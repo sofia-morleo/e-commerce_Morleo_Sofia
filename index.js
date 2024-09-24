@@ -11,7 +11,7 @@ function card() {
             <div class="card-body">
                     <h5 class="card-title">Producto ${i}</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary bg-secondary border-0">Ver más</a>
+                    <a href="producto.html?id=${i}" class="btn btn-primary bg-secondary border-0">Ver más</a>
             </div>
         </div>`
 
