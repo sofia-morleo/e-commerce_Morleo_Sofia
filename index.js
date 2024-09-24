@@ -19,7 +19,7 @@ function card() {
 
     }
 
-    document.querySelector('section').innerHTML = prod.join().replaceAll(",", "");
+    document.querySelector('section').innerHTML = prod.join("");
 }
 card();
 
