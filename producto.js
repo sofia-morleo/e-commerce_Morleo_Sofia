@@ -1,4 +1,4 @@
-class Producto {
+class Producto { //creo la clase donde se va a guardar las categorias del menu
     constructor(titulo, detalle, precio, stock, imagen) {
         this.titulo = titulo;
         this.detalle = detalle;
@@ -11,28 +11,101 @@ class Producto {
     }
 }
 
-// obtener el id del vehiculo
-const url = window.location.search;
-// console.log(url);
+// Obtener el id del vehiculo/ lo que enviamos en la url
+const urlParams = new URLSearchParams(window.location.search);
+const id = parseInt(urlParams.get('prod'));  // Convertir a número entero
 
-const urlParametro = new URLSearchParams(url);
-//Accedemos a los valores ID
-var id = urlParametro.get('id');
 
-// Instanciar un objeto
-const bmwProducto = new Producto(`BMW`, `Es Azul`, 40000000, 4, `https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${id}.jpg`);
+// data tengo que crear un json
+const data = 
+        [{
+            "id": 1,
+            "title": "Nothing to Lose",
+            "detail": "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
+            "img": "http://dummyimage.com/450x300.png/cc0000/ffffff",
+            "price": 54,
+            "stock": 87
+        }, {
+            "id": 2,
+            "title": "Ditchdigger's Daughters, The",
+            "detail": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
+            "img": "http://dummyimage.com/450x300.png/cc0000/ffffff",
+            "price": 52,
+            "stock": 57
+        }, {
+            "id": 3,
+            "title": "Atlantic City",
+            "detail": "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
+            "img": "http://dummyimage.com/450x300.png/dddddd/000000",
+            "price": 8,
+            "stock": 18
+        }, {
+            "id": 4,
+            "title": "HOUBA! On the Trail of the Marsupilami (Sur la piste du Marsupilami)",
+            "detail": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
+            "img": "http://dummyimage.com/450x300.png/dddddd/000000",
+            "price": 21,
+            "stock": 38
+        }, {
+            "id": 5,
+            "title": "Possession",
+            "detail": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.\n\nPellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+            "img": "http://dummyimage.com/450x300.png/dddddd/000000",
+            "price": 67,
+            "stock": 3
+        }, {
+            "id": 6,
+            "title": "Fragile",
+            "detail": "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
+            "img": "http://dummyimage.com/450x300.png/cc0000/ffffff",
+            "price": 78,
+            "stock": 23
+        }, {
+            "id": 7,
+            "title": "Killjoy Goes to Hell",
+            "detail": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.",
+            "img": "http://dummyimage.com/450x300.png/5fa2dd/ffffff",
+            "price": 1,
+            "stock": 74
+        }, {
+            "id": 8,
+            "title": "Ronja Robbersdaughter (Ronja Rövardotter)",
+            "detail": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
+            "img": "http://dummyimage.com/450x300.png/dddddd/000000",
+            "price": 79,
+            "stock": 12
+        }, {
+            "id": 9,
+            "title": "MacGyver: Trail to Doomsday",
+            "detail": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.\n\nDuis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
+            "img": "http://dummyimage.com/450x300.png/cc0000/ffffff",
+            "price": 3,
+            "stock": 57
+        }, {
+            "id": 10,
+            "title": "Rhapsody in August (Hachi-gatsu no kyôshikyoku)",
+            "detail": "In congue. Etiam justo. Etiam pretium iaculis justo.",
+            "img": "http://dummyimage.com/450x300.png/ff4444/ffffff",
+            "price": 76,
+            "stock": 86
+        }];
 
-// Crear el HTML dinámico
-const productoHTML = `
-<div class="card text-center" style="width: 18rem;">
-  <img src="${bmwProducto.imagen}" class="card-img-top" alt="Imagen del producto">
-  <div class="card-body">
-    <h5 class="card-title">${bmwProducto.titulo}</h5>
-    <h4 class="card-price">$ ${bmwProducto.precio}</h4>
-    <p class="card-text">${bmwProducto.detalle}</p>
-    <p class="card-text">Stock: ${bmwProducto.stock}</p>
-  </div>
-</div>`;
+// buscar el producto que coincida con el id del url
+const producto = data.find((prod) => prod.id === id);
 
-// Insertar el contenido en el h1 de producto.html
-document.querySelector("main").innerHTML = productoHTML;
+
+// Crear el HTML dinámico para que este el navbar
+
+  const card = `
+      <div class="card mb-3" style="width: 18rem;">
+          <img src="${producto.img}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="${producto.title}">
+          <div class="card-body">
+              <h5 class="card-title">${producto.title} ${producto.id}</h5>
+              <p class="card-text">${producto.detail}</p>
+              <p class="card-text">$${producto.price}</p>
+              <p class="card-text">${producto.stock}</p>
+          </div>
+      </div>`;
+
+  
+  document.querySelector("main").innerHTML = card;
