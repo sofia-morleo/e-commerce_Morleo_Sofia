@@ -40,10 +40,9 @@ document.querySelector('header').innerHTML = (`
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         ${menuHTML.join("")}
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-outline-success d-flex align-items-center justify-content-center"
-                            type="submit">
+                    <form class="d-flex" role="search" id="searchForm">
+                        <input class="form-control me-2" id="search" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-success d-flex align-items-center justify-content-center" id="filter" type="button">
                             <i class="material-icons">search</i>
                         </button>
                     </form>
