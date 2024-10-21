@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const resetInput = () => {
         input.value = "";
+        titulo.innerText = "Conocé nuestros productos ";
         card(data);
     }
 
@@ -183,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     categoriaFilter.forEach(button => {
         button.addEventListener("click", () => {
             const category = button.getAttribute("data-category"); // Obtener la categoría del atributo data-category, para ya poder buscalo
+            document.querySelector('h1').innerHTML = category;
             filterCategoria(category); // llamar a la funcion para que filtre
         });
     });

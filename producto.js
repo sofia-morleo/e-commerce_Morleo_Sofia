@@ -140,8 +140,8 @@ const producto = data.find((prod) => prod.id === id);
                 </div>
                 <div class="product_tit">
                     <h1 class="titulo">${producto.title}</h1>
-                    <div class="price">
-                        <p>Precio:</p>
+                    <div class="stock">
+                        <p>Stock: <div class="stock_cant">${producto.stock}</div></p>
                         <div class="price_product">
                             $${producto.price.toLocaleString('es-ES')}
                         </div>
