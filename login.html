@@ -41,7 +41,11 @@
 
         let form = document.querySelector("form");
         let message = document.querySelector(".messageError");
-        form.addEventListener("submit", (e) => {
+
+        form.addEventListener("submit", handleSubmitLogin);
+
+
+        function handleSubmitLogin(e) {
             e.preventDefault();
             // console.log(form.elements.email.value)
             let emailForm = form.elements.email.value;
@@ -60,7 +64,7 @@
                 form.elements.email.value = ""; //elimino los campos
                 form.elements.password.value = "";
             }
-        });
+        };
         form.elements.email.addEventListener("input", () => {
             message.innerText = "";
         });
