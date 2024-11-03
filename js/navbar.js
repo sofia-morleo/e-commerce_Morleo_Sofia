@@ -59,17 +59,81 @@ document.querySelector('header').innerHTML = (`
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    ${window.location.pathname.includes("index.html") ? `
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         ${menuHTML.join("")}
                     </ul>
                     <form class="d-flex" role="search" id="searchForm">
-                        <input class="form-control me-1" id="search" type="search" placeholder="Buscar" aria-label="Search">
+                        <input class="form-control me-1" id="search" type="search" placeholder="Buscar" aria-label="Search" style="width: 300px;">
                         <button class="buscar btn btn-outline-success d-flex align-items-center justify-content-center" id="filter" type="button">
                             <i class="material-icons">search</i>
                         </button>
                     </form>
+                    ` : ""}
+
+                    <div class="user-container ms-auto"> <!-- Contenedor para el usuario -->
+                        ${localStorage.getItem("email") 
+                            ? `<span>${localStorage.getItem("email")}</span> <span style="margin-left: 10px; margin-right: 10px;">|</span> 
+                            <li><img height="25" src="./img/cart.png" alt="Comprar"/><b id="quantity"><b>${localStorage.getItem("quantity")}</b></li>
+                            </span> | <span class="logout" onClick="Logout()">Cerrar sesión</span>` 
+                            : `<a href='./login.html' class="login">Iniciar sesión</a>`}
+                    </div>
                 </div>
             </div>
         </nav>
     </div>
 `);
+
+// Estilos CSS para mejorar la vista
+// Estilos CSS para mejorar la vista del navbar y las categorías
+const style = document.createElement('style');
+style.innerHTML = `
+
+    li{
+        list-style-type: none;
+        & b{
+        margin: 0 5px; 
+        }
+        
+
+    }
+    .navbar {
+        padding: 10px; 
+    }
+    .nav-item {
+        margin: 0 15px; 
+    }
+    .nav-link {
+        color: white; 
+        text-decoration: none; 
+        transition: color 0.3s, background-color 0.3s; /
+        padding: 8px 12px;
+        border-radius: 10px; 
+    }
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.2); 
+        color: #FF69B4; 
+    }
+    .user-container {
+        display: flex;
+        align-items: center;
+        margin-left: 20px; 
+    }
+    .logout, .login {
+        margin-left: 10px; 
+        color: white; 
+        text-decoration: none; 
+        cursor: pointer; 
+    }
+    .logout:hover, .login:hover {
+        text-decoration: underline;
+    }
+`;
+document.head.appendChild(style);
+
+
+function Logout(){
+    localStorage.clear();
+    location.href = "./index.html";
+}
+

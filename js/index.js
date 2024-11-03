@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const filter = () => {
 
         const filterData = data.filter((prod) =>
-            prod.title.toLowerCase() === input.value.toLowerCase()// ponemos todo en minusculas
+            prod.title.toLowerCase().includes(input.value.toLowerCase()) // ponemos todo en minusculas
         );
 
         if (filterData.length > 0) {
@@ -47,6 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     buttonFilter.addEventListener("click", filter);
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault(); // Evitar el envío del formulario
+            filter(); // Ejecutar la función de filtro
+        }
+    });
 
     input.addEventListener("input", () => {
         if (input.value === "") {

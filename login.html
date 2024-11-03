@@ -7,6 +7,7 @@
             window.location.href = "./index.html";
         }
     </script>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon"
@@ -33,32 +34,42 @@
             <label class="form-label">Password</label>
             <input type="password" class="form-control" name="password" />
         </div>
+        <div class="messageError"></div><br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <script>
-        // usuario:
-        const userLogin = { 
-            email: "sofymleo@gmail.com", 
-            password: "111" 
-        };
 
         let form = document.querySelector("form");
+        let message = document.querySelector(".messageError");
         form.addEventListener("submit", (e) => {
             e.preventDefault();
             // console.log(form.elements.email.value)
-            if (userLogin.email === form.elements.email.value && userLogin.password === form.elements.password.value) {
+            let emailForm = form.elements.email.value;
+            let passwordForm = form.elements.password.value;
+
+            if (userLogin.email === emailForm && userLogin.password === passwordForm) {
+
                 localStorage.setItem("email", form.elements.email.value);
-                alert('Inicio de sesión exitoso');
+                localStorage.setItem("cart", JSON.stringify([]));
+                localStorage.setItem("quantity", "0");
+
                 window.location.href = "./index.html";
             }
             else {
-                alert("Datos incorrectos");
+                message.innerText= "Datos Incorrectos,\n introduce credenciales validas";
                 form.elements.email.value = ""; //elimino los campos
                 form.elements.password.value = "";
             }
         });
-        
+        form.elements.email.addEventListener("input", () => {
+            message.innerText = "";
+        });
+
+        form.elements.password.addEventListener("input", () => {
+            message.innerText = "";
+        });
     </script>
+    <script src="global/const.js"></script>
 </body>
 
 </html>
