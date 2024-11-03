@@ -46,10 +46,13 @@
             // console.log(form.elements.email.value)
             if (userLogin.email === form.elements.email.value && userLogin.password === form.elements.password.value) {
                 localStorage.setItem("email", form.elements.email.value);
+                alert('Inicio de sesión exitoso');
                 window.location.href = "./index.html";
             }
             else {
-                alert("incorrecto");
+                alert("Datos incorrectos");
+                form.elements.email.value = ""; //elimino los campos
+                form.elements.password.value = "";
             }
         });
 
