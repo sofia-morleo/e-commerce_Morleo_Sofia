@@ -3,7 +3,9 @@
 
 <head>
     <script>
-        // window.location.href = "./index.html";
+        if (localStorage.getItem("email")) {
+            window.location.href = "./index.html";
+        }
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -55,7 +57,7 @@
                 form.elements.password.value = "";
             }
         });
-
+        
     </script>
 </body>
 
