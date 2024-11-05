@@ -99,7 +99,7 @@ function addItems() {
             }
         });
     } else {
-        cart.push({ product: product, quantity: Number(counter.value) });
+        cart.push({ product: product, quantity: Number(counter.value), img: product.img  });
     }
 
     

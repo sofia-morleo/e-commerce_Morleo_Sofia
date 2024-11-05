@@ -71,13 +71,22 @@ document.querySelector('header').innerHTML = (`
                     </form>
                     ` : ""}
 
-                    <div class="user-container ms-auto"> <!-- Contenedor para el usuario -->
+                    <div class="user-container ms-auto">
                         ${localStorage.getItem("email") 
-                            ? `<span>${localStorage.getItem("email")}</span> <span style="margin-left: 10px; margin-right: 10px;">|</span> 
-                            <li><img height="25" src="./img/cart.png" alt="Comprar"/><b id="quantity"><b>${localStorage.getItem("quantity")}</b></li>
-                            </span> | <span class="logout" onClick="Logout()">Cerrar sesión</span>` 
-                            : `<a href='./login.html' class="login">Iniciar sesión</a>`}
+                            ? `<span>${localStorage.getItem("email")}</span> 
+                            <span style="margin-left: 10px; margin-right: 10px;">|</span> 
+                            <li><a href="cart.html" style="color: inherit; text-decoration: none;">
+                                <img height="25" src="./img/cart.png" alt="Comprar"/>
+                                <b id="quantity">${localStorage.getItem("quantity")}</b>
+                            </a></li>
+                            <span> | </span>
+                            <span class="logout" onClick="Logout()">Cerrar sesión</span>`
+                            : `<a href='./login.html' class="login">Iniciar sesión</a>`
+                        }
                     </div>
+
+
+
                 </div>
             </div>
         </nav>
@@ -94,9 +103,12 @@ style.innerHTML = `
         & b{
         margin: 0 5px; 
         }
+        & 
         
 
-    }
+    }a {
+        list-style-type: none;
+        }
     .navbar {
         padding: 10px; 
     }
@@ -132,7 +144,7 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 
-function Logout(){
+function Logout() {
     localStorage.clear();
     location.href = "./index.html";
 }
