@@ -9,14 +9,60 @@
         href="https://static.vecteezy.com/system/resources/previews/010/984/647/non_2x/pink-gradient-circle-free-png.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <style>
         body {
+            background: linear-gradient(135deg, #B0DFF5, #D6C7F3, #5D3F8E);
+            height: 100vh;
             display: grid;
             place-items: center;
-            height: 100dvh;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        form {
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        :root {
+            --color-background: #B0DFF5;
+            --color-text: #2A5B8E;
+            --color-accent: #D6C7F3;
+            --color-highlight: #5D3F8E;
+            --color-light: #FFFFFF;
+        }
+
+
+
+        form {
+            background-color: var(--color-light);
+            color: var(--color-text);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background-color: var(--color-highlight);
+            color: var(--color-light);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: var(--color-accent);
+            color: var(--color-text);
+            transition: 0.3s;
         }
     </style>
     <title>login</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -55,7 +101,7 @@
                 window.location.href = "./index.html";
             }
             else {
-                message.innerText= "Datos Incorrectos,\n introduce credenciales validas";
+                message.innerText = "Datos Incorrectos,\n introduce credenciales validas";
                 form.elements.email.value = ""; //elimino los campos
                 form.elements.password.value = "";
             }
@@ -69,6 +115,8 @@
         });
     </script>
     <script src="global/const.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

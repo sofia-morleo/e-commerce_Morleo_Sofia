@@ -29,7 +29,7 @@ function getCart(cards) {
                                 <div class="col-md-3">
                                     <div class="mt-3">
                                         <p class="text-muted mb-2">Total</p>
-                                        <h5>${card.product.price * card.quantity}</h5>
+                                        <h5>$${card.product.price * card.quantity}</h5>
                                     </div>
                                 </div>
                                 <div class="col-md-2">

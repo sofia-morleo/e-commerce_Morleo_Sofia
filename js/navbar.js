@@ -72,17 +72,17 @@ document.querySelector('header').innerHTML = (`
                     ` : ""}
 
                     <div class="user-container ms-auto">
-                        ${localStorage.getItem("email") 
-                            ? `<span>${localStorage.getItem("email")}</span> 
+                        ${localStorage.getItem("email")
+        ? `<span>${localStorage.getItem("email")}</span> 
                             <span style="margin-left: 10px; margin-right: 10px;">|</span> 
                             <li><a href="cart.html" style="color: inherit; text-decoration: none;">
                                 <img height="25" src="./img/cart.png" alt="Comprar"/>
                                 <b id="quantity">${localStorage.getItem("quantity")}</b>
                             </a></li>
                             <span> | </span>
-                            <span class="logout" onClick="Logout()">Cerrar sesión</span>`
-                            : `<a href='./login.html' class="login">Iniciar sesión</a>`
-                        }
+                            <span class="logout d-flex align-items-center justify-content-center" type="button" onClick="Logout()" style="color: #5D3F8E;"><span class="material-symbols-outlined">logout</span> Cerrar sesión</span>`
+        : `<a href='./login.html' class="login d-flex align-items-center justify-content-center" style="color: #5D3F8E;"><span class="material-symbols-outlined">login</span>Iniciar sesión</a>`
+    }
                     </div>
 
 
@@ -98,6 +98,9 @@ document.querySelector('header').innerHTML = (`
 const style = document.createElement('style');
 style.innerHTML = `
 
+    *{
+        color: #5D3F8E;
+    }
     li{
         list-style-type: none;
         & b{
@@ -138,7 +141,7 @@ style.innerHTML = `
         cursor: pointer; 
     }
     .logout:hover, .login:hover {
-        text-decoration: underline;
+       
     }
 `;
 document.head.appendChild(style);
