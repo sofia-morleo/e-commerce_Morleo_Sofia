@@ -19,7 +19,14 @@ function card(product) {
     document.querySelector('section').innerHTML = card.join("");
 }
 // pASO A LA FUNCION EL OBJETO ENTERRO
-card(data);
+document.querySelector(".container").innerHTML = '<span class="loader"></span>';
+const promise = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+        resolve("ok")
+    }, 3000)
+}) 
+promise.then(() => card(data))
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
