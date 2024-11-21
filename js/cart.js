@@ -94,7 +94,7 @@ function checkout() {
         user: localStorage.getItem("email"),
         items: JSON.parse(localStorage.getItem("cart")) || [],
     };
-    fetch("https://673be2ad96b8dcd5f3f7c62d.mockapi.io/orders", {
+    fetch("https://673cc12496b8dcd5f3fb7635.mockapi.io/orders", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
