@@ -40,12 +40,12 @@ const card = `
                 ${localStorage.getItem("email") ? `
                     <div class="agregar">
                         <div class="input-group">
-                            <button class="btn btn-secondary d-flex align-items-center justify-content-center" "type="button" onclick="increaseItem()">
-                                <span class="material-symbols-outlined" style="color:white;">add</span>
-                            </button>
-                            <input type="number" class="form-control" value="1" style="width: 50px; text-align: center;">
                             <button class="btn btn-secondary d-flex align-items-center justify-content-center" type="button" onclick="decreaseItem()">
                                 <span class="material-symbols-outlined" style="color:white;">remove</span>
+                            </button>
+                            <input type="number" class="form-control" value="1" style="width: 50px; text-align: center;">
+                            <button class="btn btn-secondary d-flex align-items-center justify-content-center" "type="button" onclick="increaseItem()">
+                                <span class="material-symbols-outlined" style="color:white;">add</span>
                             </button>
                         </div>
                         <a class="btn btn-secondary m-3 d-flex align-items-center justify-content-center w-100 mx-auto" onclick="addItems()">
@@ -86,65 +86,62 @@ function increaseItem() {
     }
 }
 function addItems() {
-    function add() {
-        // Obtener el carrito del localStorage
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const idProduct = Number(window.location.search.split("=")[1]);
+    const product = data.find(item => item.id === idProduct);
+    const quantityToAdd = Number(counter.value);
 
-        const idProduct = Number(window.location.search.split("=")[1]);
-        const product = data.find(item => item.id === idProduct);
-
-        // Verificar si el producto ya existe en el carrito
-        const existeIdEnCard = cart.some(item => item.product.id === idProduct);
-
-        if (existeIdEnCard) {
-            cart = cart.map(item => {
-                if (item.product.id === idProduct) {
-                    return {
-                        ...item,
-                        quantity: item.quantity + Number(counter.value)
-                    };
-                } else {
-                    return item;
-                }
-            });
-        } else {
-            cart.push({ product: product, quantity: Number(counter.value), img: product.img });
-        }
-
-
-        counter.value = "1";// Reiniciar el valor del contador
-        localStorage.setItem("cart", JSON.stringify(cart));
-
-        // Calcular la cantidad total de productos en el carrito
-        let quantity = cart.reduce((acumulado, actual) => acumulado + actual.quantity, 0);
-        localStorage.setItem("quantity", JSON.stringify(quantity));
-
-        // Actualiza
-        const quantityTag = document.querySelector("#quantity");
-        quantityTag.innerText = quantity;
-
-        Toastify({
-            text: "Agregaste producto/s al carrito de compras",
-            style: {
-                background: "#cacfd2 ",
-            },
-        }).showToast()
-    }
+    // Confirmación con Swal
     Swal.fire({
-        text: "Estás segura/o de que estás segura/o de que querés agregar el producto al carrito?",
-        confirmButtonText: "Si",
-        cancelButtonText: "Ay no se! Tengo miedo",
+        text: "¿Estás seguro/a de que quieres agregar el producto al carrito?",
+        confirmButtonText: "Sí",
+        cancelButtonText: "No, mejor no",
         showCancelButton: true,
-        showCloseButton: true,
         confirmButtonColor: "#06f",
         cancelButtonColor: "#DB5079",
     }).then(result => {
         if (result.isConfirmed) {
-            // Ejecutamos lo que queremos si nos dió ok!
-            add()
+            // Obtener el carrito actual
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Buscar el producto en el carrito
+            const existingProductIndex = cart.findIndex(item => item.product.id === idProduct);
+
+            if (existingProductIndex !== -1) {
+                // Si ya existe, actualizamos la cantidad
+                cart[existingProductIndex].quantity += quantityToAdd;
+            } else {
+                // Si no existe, lo agregamos
+                cart.push({
+                    product: product,
+                    quantity: quantityToAdd,
+                    img: product.img,
+                });
+            }
+
+            // Actualizar el carrito en localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Calcular y actualizar la cantidad total de productos
+            const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+            localStorage.setItem("quantity", totalQuantity);
+
+            // Actualizar el contador en el DOM
+            document.querySelector("#quantity").innerText = totalQuantity;
+
+            // Reiniciar el contador de cantidad
+            counter.value = "1";
+
+            // Mostrar notificación de éxito
+            Toastify({
+                text: "Producto agregado al carrito",
+                style: {
+                    background: "#cacfd2",
+                },
+            }).showToast();
         }
-    })
+    });
 }
+
 
 
 

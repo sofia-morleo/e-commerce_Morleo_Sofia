@@ -98,9 +98,9 @@ document.querySelector('header').innerHTML = (`
 const style = document.createElement('style');
 style.innerHTML = `
 
-    *{
-        color: #5D3F8E;
-    }
+    * {
+    color: #5D3F8E; 
+}
     li{
         list-style-type: none;
         & b{

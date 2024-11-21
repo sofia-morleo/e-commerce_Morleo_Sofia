@@ -40,6 +40,13 @@
 .scroll-container::-webkit-scrollbar {
     height: 10px;
 }
+.img_prod img {
+    max-width: 600px; /* Ajusta el tamaño máximo permitido */
+    max-height: 600px; /* Ajusta el tamaño máximo permitido */
+    width: auto; /* Mantiene la proporción */
+    height: auto; /* Mantiene la proporción */
+}
+
 
 .card-container {
     display: flex;
@@ -101,11 +108,21 @@ h1 {
 }
 
 /* Barra de navegación */
-.navbar {
-    font-weight: 350;
-    background-color: #ffffff !important;
-    color: #5D3F8E;
+.nav-link {
+    color: #5D3F8E !important; /* Color púrpura para que sea consistente */
+    text-decoration: none;
+    transition: color 0.3s, background-color 0.3s;
+    padding: 8px 12px;
+    border-radius: 10px;
 }
+.nav-link:hover {
+    border: none; /* Asegúrate de eliminar cualquier borde */
+    box-shadow: none; /* Elimina sombras */
+    outline: none; /* Elimina posibles contornos */
+    background-color: transparent; /* Si el fondo cambia, hazlo transparente */
+    color: #FF69B4 !important; /* Asegúrate de mantener el color que desees */
+}
+
 
 .navbar-toggler {
     border: none;
@@ -124,7 +141,6 @@ h1 {
 .buscar {
     border: none;
     border-radius: 30px;
-    color: #5D3F8E;
 }
 
 .buscar i {

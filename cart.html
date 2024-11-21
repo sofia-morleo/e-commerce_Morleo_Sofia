@@ -48,7 +48,7 @@
                     <div class="col-sm-6 d-flex justify-content-end">
                         <button id="btn-clear-cart" class="btn btn-danger me-2" onclick="cleanCart()">Limpiar
                             Carrito</button>
-                        <button id="btn-checkout" class="btn btn-success me-2">Checkout</button>
+                        <button id="btn-checkout" class="btn btn-success me-2" onclick="checkout()">Checkout</button>
                         
                     </div>
                 </div>
@@ -87,6 +87,11 @@
         /* Asegurar que los botones estén alineados correctamente */
         #btn-checkout,
         #btn-clear-cart {
+            display: inline-block;
+            margin: 0;
+            /* Elimina márgenes adicionales */
+        }
+        #btn-checkout {
             display: inline-block;
             margin: 0;
             /* Elimina márgenes adicionales */
